@@ -1,13 +1,12 @@
 (ns avenue.core
   (:require [rum.core :as rum]
-            [cloure.string :as string]
             [avenue.util :as util]))
 
 
 (defonce *routes (atom {}))
 
 
-(defonce *route-config (atom {}))
+(defonce *config (atom {}))
 
 
 (defonce *current-route (atom nil))
@@ -30,7 +29,7 @@
   (or (util/some-pred (fn [[k route]]
                         (re-matches (:match route) (path))) @*routes)
       (throw (ex-info (str "No route for " (.-href (location)))
-                           {:url (.-href (location))}))))
+                      {:url (.-href (location))}))))
 
 
 (defn matches-current-route? [url]
@@ -46,9 +45,14 @@
 (defn render-route
   ([] (render-route (path)))
   ([loc]
-   (let [[k route] (route-for-location loc)]
-     (reset! *current-route route)
-     (rum/mount ((:ctor route) :args route) (util/by-id )))))
+   (let [[k route] (route-for-location loc)
+         mount (:react-mount @*config)]
+     (if mount
+       (do
+         (reset! *current-route route)
+         (rum/mount ((:ctor route) :args route) (util/by-id mount)))
+       (throw (ex-info "No :react-mount defined! Did you set one up?"
+                       {:route route :key k}))))))
 
 
 (defn go! [url]
