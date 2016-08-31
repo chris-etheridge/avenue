@@ -1,4 +1,4 @@
-(defproject avenue "0.1.0-SNAPSHOT"
+(defproject avenue "0.0.5"
   :description "A super simple routing library."
   :url "https://github.com/chris-etheridge/avenue"
   :license {:name "Eclipse Public License"
