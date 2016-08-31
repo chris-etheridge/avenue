@@ -1,6 +1,6 @@
 (defproject avenue "0.1.0-SNAPSHOT"
   :description "A super simple routing library."
-  :url "http://example.com/FIXME"
+  :url "https://github.com/chris-etheridge/avenue"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
@@ -32,7 +32,7 @@
                            :preloads [devtools.preload]}}
                {:id "release"
                 :source-paths ["src"]
-                :compiler {:output-to "resources/public/js/compiled/avenue.js"
+                :compiler {:output-to "target/js/avenue.js"
                            :main avenue.core
                            :optimizations :advanced
                            :pretty-print false
