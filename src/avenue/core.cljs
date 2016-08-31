@@ -71,6 +71,10 @@
     (set! js/window.location url)))
 
 
+(defn set-mount-point! [id]
+  (swap! *config assoc :react-mount id))
+
+
 (defn refresh []
   (set! js/window.onpopstate #(render-route))
   (render-route))
