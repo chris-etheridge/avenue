@@ -29,6 +29,9 @@ Now you need to set up `avenue`. First, let's add some routes and set our config
 (ns ui.routes
   (:require [avenue.core :as avenue]))
 
+;; set where we want to mount our pages
+(avenue/set-mount-point! "my_mount_point_id")
+
 (avenue/add-route :kitty
   :match #"/"
   :ctor kitty/index-ctor
@@ -38,11 +41,9 @@ Now you need to set up `avenue`. First, let's add some routes and set our config
   :match #"/woof"
   :ctor doggy/index-ctor
   :opts ["Dog goes" "woof"])
-
-;; set where we want to mount our pages
-(avenue/set-mount-point! "page_mount")
 ```
 
+**Note:** If you do not `set-mount-point!`, then `react_mount` will be used as a fallback.
 
 Now, we can call / render our routes!
 
@@ -66,12 +67,27 @@ Now, we can call / render our routes!
 
 ### Caveats / Gotchas
 
-Remember to reload your routes when your app starts or when Figwheel reloads. This can cause some problems with pages not updating if their code has changed.
+Reload your routes when your app starts or when Figwheel reloads. This can cause components to not update when their code has changed.
 
 ```clj
 (defn ^:export reload! []
   (avenue/refresh!)
   (my-routes/refresh!))
+
+;; wehre my-routes is:
+(ns my-routes
+  (:require [avenue.core :as avenue]))
+
+(avenue/add-route :kitty
+  :match #"/"
+  :ctor kitty/index-ctor
+  :opts [:kitty "meow"])
+
+(avenue/add-route :doggy
+  :match #"/woof"
+  :ctor doggy/index-ctor
+  :opts ["Dog goes" "woof"])
+
 ```
 
 ### Emojis in commits?
