@@ -48,15 +48,11 @@ Now you need to set up `avenue`. First, let's add some routes and set our config
 Now, we can call / render our routes!
 
 ```clj
-;; go to a route via a URL or key
+;; go to a route via a URL
 (avenue/go! "mygreatapp.com/woof")
 
-(avenue/go! :kitty)
-
-;; reload at a URL or key
+;; reload at a URL
 (avenue/reload! "mygreatapp.com")
-
-(avenue/reload! :doggy)
 
 ;; check if a URL matches a current route
 (avenue/matches-current-route? "mygreatapp.com/dog/stuff")
