@@ -34,13 +34,11 @@ Now you need to set up `avenue`. First, let's add some routes and set our config
 
 (avenue/add-route :kitty
   :match #"/"
-  :ctor kitty/index-ctor
-  :opts [:kitty "meow"])
+  :ctor kitty/index-ctor)
 
 (avenue/add-route :doggy
   :match #"/woof"
-  :ctor doggy/index-ctor
-  :opts ["Dog goes" "woof"])
+  :ctor doggy/index-ctor)
 ```
 
 **Note:** If you do not `set-mount-point!`, then `react_mount` will be used as a fallback.
@@ -76,13 +74,11 @@ Reload your routes when your app starts or when Figwheel reloads. This can cause
 
 (avenue/add-route :kitty
   :match #"/"
-  :ctor kitty/index-ctor
-  :opts [:kitty "meow"])
+  :ctor kitty/index-ctor)
 
 (avenue/add-route :doggy
   :match #"/woof"
-  :ctor doggy/index-ctor
-  :opts ["Dog goes" "woof"])
+  :ctor doggy/index-ctor)
 
 ```
 
