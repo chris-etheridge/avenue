@@ -52,11 +52,11 @@
   ([] (render-route (path)))
   ([loc]
    (let [[k route] (route-for-location loc)
-         mount (:react-mount @*config)]
+         mount     (:react-mount @*config)]
      (when-not mount
        (js/console.warn "No mount point has been set. Using 'react_mount' as a fallback!"))
      (reset! *current-route route)
-     (rum/mount ((:ctor route) (:args route)) (util/by-id (or mount "react_mount"))))))
+     (rum/mount ((:ctor route) (location)) (util/by-id (or mount "react_mount"))))))
 
 
 (defn go!
