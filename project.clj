@@ -1,8 +1,8 @@
-(defproject avenue "0.2.5"
+(defproject avenue "0.2.6"
   :description "A super simple routing library."
   :url "https://github.com/chris-etheridge/avenue"
   :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+            :url  "http://www.eclipse.org/legal/epl-v10.html"}
 
   :min-lein-version "2.6.1"
 
@@ -20,26 +20,26 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
   :cljsbuild {:builds
-              [{:id "dev"
+              [{:id           "dev"
                 :source-paths ["src"]
-                :figwheel {:on-jsload "avenue.core/on-js-reload"}
+                :figwheel     {:on-jsload "avenue.core/on-js-reload"}
 
-                :compiler {:main avenue.core
-                           :asset-path "js/compiled/out"
-                           :output-to "resources/public/js/compiled/avenue.js"
-                           :output-dir "resources/public/js/compiled/out"
+                :compiler {:main                 avenue.core
+                           :asset-path           "js/compiled/out"
+                           :output-to            "resources/public/js/compiled/avenue.js"
+                           :output-dir           "resources/public/js/compiled/out"
                            :source-map-timestamp true
-                           :preloads [devtools.preload]}}
-               {:id "release"
+                           :preloads             [devtools.preload]}}
+               {:id           "release"
                 :source-paths ["src"]
-                :compiler {:output-to "target/js/avenue.js"
-                           :main avenue.core
-                           :optimizations :advanced
-                           :pretty-print false
-                           :compiler-stats true
-                           :closure-defines {"goog.DEBUG" false}
-                           :warnings true
-                           :verbose true}}]}
+                :compiler     {:output-to       "target/js/avenue.js"
+                               :main            avenue.core
+                               :optimizations   :advanced
+                               :pretty-print    false
+                               :compiler-stats  true
+                               :closure-defines {"goog.DEBUG" false}
+                               :warnings        true
+                               :verbose         true}}]}
 
   :figwheel {:css-dirs ["resources/public/css"]}
 
@@ -47,6 +47,6 @@
                                   [figwheel-sidecar "0.5.4-7"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    :source-paths ["src" "dev"]
-                   :repl-options {:init (set! *print-length* 50)
+                   :repl-options {:init             (set! *print-length* 50)
                                   :nrepl-middleware [[cemerick.piggieback/wrap-cljs-repl]
                                                      [lighttable.nrepl.handler/lighttable-ops]]}}})
