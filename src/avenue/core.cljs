@@ -12,6 +12,10 @@
 (defonce *current-route (atom nil))
 
 
+(defn all-routes []
+  @*routes)
+
+
 (defn- location []
   js/document.location)
 
